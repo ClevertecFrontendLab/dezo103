@@ -1,0 +1,21 @@
+.stars {
+  display:flex;
+  margin-bottom:16px;
+}
+.stars img {
+  margin-right:10px;
+}
+.stars p {
+  font-weight:700;
+  font-size:18px;
+  line-height:28px;
+  margin-left:10px;
+}
+@media screen and (max-width:320px) {
+  .stars img {
+    width:34px;
+  }
+  .stars p {
+    line-height:34px;
+  }
+}

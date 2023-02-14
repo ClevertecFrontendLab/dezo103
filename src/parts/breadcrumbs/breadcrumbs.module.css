@@ -1,0 +1,32 @@
+.breadcrumbs {
+  background:#F9F9FA;
+  font-style:normal;
+  font-weight:400;
+  font-size:14px;
+  line-height:18px;
+  letter-spacing:0.1px;
+  color:#A7A7A7;
+  padding:23px 10px;
+  width:100%;
+  margin-bottom:42px;
+}
+.breadcrumbs p {
+  max-width:1110px;
+  margin:0 auto;
+  padding:0 10px;
+}
+@media screen and (max-width:768px) {
+  .breadcrumbs p {
+    max-width:640px;
+  }
+}
+@media screen and (max-width:320px) {
+  .breadcrumbs{
+    margin-bottom:20px;
+  }
+  .breadcrumbs p {
+    width:288px;
+    padding:0;
+  }
+}
+
