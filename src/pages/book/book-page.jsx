@@ -1,15 +1,26 @@
 import {useEffect, useRef, useState} from "react";
 import {useParams} from "react-router-dom";
+import {useDispatch, useSelector} from "react-redux";
 import {Breadcrumbs} from "../../parts/breadcrumbs";
 import {Rating} from "../../parts/rating";
 import {Review} from "../../parts/review";
-import {books} from '../../constants/books-list'
 import style from './book-page.module.css';
 import {SwiperMobile} from "../../parts/swiper-mobile/swiper-mobile";
 import {SwiperDesktop} from "../../parts/swiper-desktop/swiper-desktop";
+import {setSingleBookThunk} from "../../redux/single-book-reducer";
+import {singleBook} from "../../redux/single-book-reducer-selectors";
 
 
 export const BookPage = () => {
+
+    const dispatch = useDispatch()
+
+    const {id} = useParams()
+
+    useEffect(() => {
+        window.scrollTo(0, 0);
+        dispatch(setSingleBookThunk(id))
+    }, [dispatch, id])
 
     const windowWidth = useRef(window.innerWidth)
 
@@ -20,8 +31,8 @@ export const BookPage = () => {
         }
     }, [])
 
-    const {id} = useParams()
-    const book = books.find(book => book.id === id)
+
+    const book = useSelector(singleBook)
 
     const [isReviewsOpen, setIsReviewsOpen] = useState(false)
 
@@ -30,26 +41,27 @@ export const BookPage = () => {
     }
 
     return (
-        <section className={style.mainPage}>
-            <Breadcrumbs/>
+        (Object.keys(book).length !== 0) &&
+         <section className={style.mainPage}>
+            <Breadcrumbs categories={book.categories[0]} title={book.title}/>
             <div className={style.about}>
-                <div className={style.cover}>
-                    {
-                        (windowWidth.current >= 1440)
-                            ? <SwiperDesktop bookImages={book.photos}/>
-                            : <SwiperMobile bookImages={book.photos}/>
-                    }
-                </div>
+                 <div className={style.cover}>
+                     {
+                         (windowWidth.current >= 1440)
+                             ? <SwiperDesktop bookImages={book.images}/>
+                             : <SwiperMobile bookImages={book.images}/>
+                     }
+                 </div>
                 <div className={style.mainBookData}>
-                    <h1>{book.name}</h1>
-                    <div className={style.author}>{book.author}</div>
+                    <h1>{book.title}</h1>
+                    <div className={style.author}>{book.authors[0]}</div>
                     <div className={style.buttonWrapper}>
                         <button type='button'>Забронировать</button>
                     </div>
                 </div>
                 <div className={style.descriptionAbout}>
                     <h3>О книге</h3>
-                    <p>{book.about}</p>
+                    <p>{book.description}</p>
                     <p>Откройте великолепно иллюстрированную книгу и вы сразу поймете, что алгоритмы
                         — это просто. А грокать алгоритмы — это веселое и увлекательное занятие.</p>
                 </div>
@@ -57,7 +69,7 @@ export const BookPage = () => {
             <div className={style.detail}>
                 <h3>Рейтинг</h3>
                 <div className={style.line}/>
-                <Rating/>
+                <Rating rating={book.rating}/>
                 <h3 className={style.marginedH3}>Подробная информация</h3>
                 <div className={style.line}/>
                 <div className={style.tables}>
@@ -68,38 +80,37 @@ export const BookPage = () => {
                         </tr>
                         <tr>
                             <td>Год издания</td>
-                            <td>2019</td>
+                            <td>{book.issueYear}</td>
                         </tr>
                         <tr>
                             <td>Страниц</td>
-                            <td>288</td>
+                            <td>{book.pages}</td>
                         </tr>
                         <tr>
                             <td>Переплет</td>
-                            <td>Мягкая обложка</td>
+                            <td>{book.cover}</td>
                         </tr>
                         <tr>
                             <td>Формат</td>
-                            <td>70х100</td>
+                            <td>{book.format}</td>
                         </tr>
                     </table>
                     <table>
                         <tr>
                             <td>Жанр</td>
-                            <td>Компьютерная литература</td>
+                            <td>{book.categories}</td>
                         </tr>
                         <tr>
                             <td>Вес</td>
-                            <td>370 г</td>
+                            <td>{book.weight}</td>
                         </tr>
                         <tr>
                             <td>ISBN</td>
-                            <td>978-5-4461-0923-4</td>
+                            <td>{book.ISBN}</td>
                         </tr>
                         <tr>
                             <td>Изготовитель</td>
-                            <td>ООО«Питер Мейл». РФ, 198206, г.Санкт-Петербург, Петергофское ш,
-                                д.73, лит. А29
+                            <td>{book.producer}
                             </td>
                         </tr>
                     </table>

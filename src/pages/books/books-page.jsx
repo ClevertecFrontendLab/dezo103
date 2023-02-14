@@ -1,4 +1,4 @@
-import React, {useRef, useState} from 'react';
+import React, {useEffect, useRef, useState} from 'react';
 import {NavLink} from "react-router-dom";
 import book from "../../images/book.jpg";
 import filledStarIcon from "../../images/filledStarIcon.svg";
@@ -9,6 +9,7 @@ import sortByIcon from "../../images/sortByIcon.svg";
 import closeIcon from "../../images/closeIcon.svg"
 import style from './books-page.module.css'
 import {ErrorMessage} from "../../parts/error-message/error-message";
+import {allBooks} from "../../constants/books-list";
 
 
 const Card = ({singleBook}) => (
@@ -16,8 +17,8 @@ const Card = ({singleBook}) => (
         <div className={style.bookImage}>
             <NavLink to={`/${singleBook.id}`}>
             {
-                singleBook.cover
-                ? <img src={book} alt="book"/>
+                singleBook.image
+                ? <img src={`https://strapi.cleverland.by${singleBook.image.url}`} alt="book"/>
                     : <img src={emptyBook} alt="book"/>
             }
             </NavLink>
@@ -25,7 +26,7 @@ const Card = ({singleBook}) => (
         <div className={style.bookDescription}>
             <div className={style.bookRaiting}>
                 {
-                    singleBook.cover
+                    singleBook.rating
                         ? <>
                             <img src={filledStarIcon} alt="star"/>
                             <img src={filledStarIcon} alt="star"/>
@@ -37,13 +38,13 @@ const Card = ({singleBook}) => (
                 }
             </div>
             <div className={style.bookName}>
-                <p>{singleBook.name}</p>
+                <p>{singleBook.title}</p>
             </div>
             <div className={style.bookAuthor}>
-                <p>{singleBook.author}</p>
+                <p>{singleBook.authors[0]}</p>
             </div>
             <div className={style.bookButton}>
-                <button type="button" disabled={!singleBook.cover}>Забронировать</button>
+                <button type="button" disabled={singleBook.booking}>Забронировать</button>
             </div>
         </div>
     </div>
@@ -67,6 +68,10 @@ export const BooksPage = ({bookList}) => {
             inputRef.current.blur()
         }
     }
+
+    useEffect(() => {
+        window.scrollTo(0, 0);
+    })
 
     const onCloseClick = () => {
         setIsFullWidthSearch(false)

@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import {Swiper, SwiperSlide} from "swiper/react";
 import {EffectFade, Navigation, Pagination, Thumbs, Scrollbar, A11y} from "swiper";
 import emptyBook from '../../images/emptyBook.jpg'
@@ -8,11 +8,15 @@ import style from './swiper-desktop.module.css'
 
 export const SwiperDesktop = ({bookImages}) => {
 
-    const [activeImage, setActiveImage] = useState(bookImages[0])
+    const [activeImage, setActiveImage] = useState(`https://strapi.cleverland.by${bookImages[0].url}`)
 
     const onClickHandler = (event) => {
         setActiveImage(event.target.src)
     }
+
+    useEffect(() => {
+        setActiveImage(`https://strapi.cleverland.by${bookImages[0].url}`)
+    },[bookImages])
 
     return (
         <>
@@ -33,7 +37,7 @@ export const SwiperDesktop = ({bookImages}) => {
 
                     bookImages.map((item) => (
                         <SwiperSlide data-test-id='slide-mini' onClick={onClickHandler}>
-                            <img src={item} alt="slider item" className = 'swiper-slide-visible'/>
+                            <img src={`https://strapi.cleverland.by${item.url}`} alt="slider item" className = 'swiper-slide-visible'/>
                         </SwiperSlide>
                     ))
                 }

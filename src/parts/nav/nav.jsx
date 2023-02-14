@@ -1,10 +1,15 @@
 import React, {useEffect, useRef, useState} from 'react';
 import {NavLink} from "react-router-dom";
+import {useDispatch, useSelector} from "react-redux";
 import {genres} from '../../constants/genres'
 import style from './nav.module.css'
+import {setCategories, setCategoriesThunk} from "../../redux/categories-reducer";
+import {getCategoriesList} from "../../redux/categories-selectors";
 
 
 export const Navigation = ({isOpenedMenu, setIsOpenedMenu}) => {
+
+    const categories = useSelector(getCategoriesList)
 
     const [isOpenSubmenu, setIsOpenSubmenu] = useState(true)
 
@@ -30,6 +35,12 @@ export const Navigation = ({isOpenedMenu, setIsOpenedMenu}) => {
 
         return () => {document.removeEventListener('click', closeMenu)}
     }, [isOpenedMenu, setIsOpenedMenu])
+
+    const dispatch = useDispatch()
+
+    useEffect(() => {
+        dispatch(setCategoriesThunk())
+    }, [dispatch])
 
     const onClickHandler = () => {
         setIsOpenSubmenu(!isOpenSubmenu)
@@ -66,9 +77,9 @@ export const Navigation = ({isOpenedMenu, setIsOpenedMenu}) => {
                             </NavLink>
                         </li>
                         {
-                            genres.map((genre) => <li key={genre.id}>
+                            categories.map((genre) => <li key={genre.id}>
                                 <NavLink
-                                    to={`/books/${genre.pathname}`}
+                                    to={`/books/${genre.path}`}
                                     className={({isActive}) => isActive ? style.submenuActive : ''}>{genre.name}
                                 </NavLink>
                             </li>)
@@ -118,9 +129,9 @@ export const Navigation = ({isOpenedMenu, setIsOpenedMenu}) => {
                                 </NavLink>
                             </li>
                             {
-                                genres.map((genre) => <li key={genre.id}>
+                                categories.map((genre) => <li key={genre.id}>
                                     <NavLink
-                                        to={`/books/${genre.pathname}`}
+                                        to={`/books/${genre.path}`}
                                         className={({isActive}) => isActive ? style.submenuActive : ''}
                                         onClick={() => {setIsOpenedMenu(false)}}
                                     >{genre.name}

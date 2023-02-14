@@ -67,3 +67,54 @@ export const books = [
         about: 'Алгоритмы — это всего лишь пошаговые алгоритмы решения задач, и большинство таких задач уже были кем-то решены, протестированы и проверены. Можно, конечно, погрузится в глубокую философию гениального Кнута, изучить многостраничные фолианты с доказательствами и обоснованиями, но хотите ли вы тратить на это свое время? Откройте великолепно иллюстрированную книгу и вы сразу поймете, что алгоритмы — это просто. А грокать алгоритмы — это веселое и увлекательное занятие.'
     },
 ]
+
+export const allBooks = [
+    {
+        issueYear: "2019",
+        rating: 3,
+        title: "Построение бизнес-моделей: Настольная книга стратега и новатора",
+        authors: [
+            "Александр Остервальдер"
+        ],
+        image: {
+            url: "/uploads/10209755_0_Postroenie_biznes_modeley_Nastolnaya_kniga_stratega_i_novatora_Aleksandr_Ostervalder_Iv_Pine_931aabe20f.jpg"
+        },
+        categories: [
+            "Бизнес"
+        ],
+        id: 2,
+        booking: null,
+        delivery: null,
+        histories: null
+    },
+    {
+        issueYear: "2018",
+        rating: null,
+        title: "Разработка ценностных предложений: Как создавать товары и услуги, которые захотят купить потребители",
+        authors: [
+            "Александр Остервальдер"
+        ],
+        image: {
+            url: "/uploads/10442229_0_5d1c5827e4.jpg"
+        },
+        categories: [
+            "Бизнес"
+        ],
+        id: 3,
+        booking: {
+            id: 130,
+            order: true,
+            dateOrder: "2023-01-24T13:31:42.192Z",
+            customerId: 5,
+            customerFirstName: "Дарья",
+            customerLastName: "Бичан"
+        },
+        delivery: null,
+        histories: [
+            {
+                id: 60,
+                userId: 5
+            }
+        ]
+    },
+]

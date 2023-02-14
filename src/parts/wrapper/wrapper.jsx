@@ -1,5 +1,6 @@
 import React, {useState} from 'react';
 import {Route, Routes} from "react-router-dom";
+import {useSelector} from "react-redux";
 import {Header} from "../header";
 import {MainPage} from "../../pages/main";
 import {ContractPage} from "../../pages/contract-page";
@@ -9,11 +10,13 @@ import {Footer} from "../footer";
 import {Navigation} from "../nav";
 import {ErrorMessage} from "../error-message";
 import {Preloader} from "../preloader";
+import {application} from "../../redux/app-selectors";
 
 
 export const Wrapper = () => {
-
     const [isOpenedMenu, setIsOpenedMenu] = useState(false)
+
+    const app = useSelector(application)
 
     return (
         <div className='wrapper'>
@@ -31,15 +34,16 @@ export const Wrapper = () => {
                            element={<MainPage/>}/>
                     <Route path='/:id'
                            element={<BookPage/>}/>
+                    <Route path='/books/:category/:id'
+                           element={<BookPage/>}/>
                 </Routes>
             </div>
             <Footer/>
             {
-                false && <ErrorMessage/>
-
+                app.isErrorConnection && <ErrorMessage/>
             }
             {
-                false && <Preloader />
+                app.isLoading && <Preloader />
             }
         </div>
     );

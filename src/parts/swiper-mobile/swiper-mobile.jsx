@@ -21,7 +21,7 @@ export const SwiperMobile = ({bookImages}) => (
                     </SwiperSlide>
                     : bookImages.map((item) => (
                         <SwiperSlide data-test-id='slide-mini'>
-                            <img src={item} alt="slider item"/>
+                            <img src={`https://strapi.cleverland.by${item.url}`} alt="slider item"/>
                         </SwiperSlide>
                     ))
             }

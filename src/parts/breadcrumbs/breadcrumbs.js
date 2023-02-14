@@ -1,8 +1,10 @@
 import React from 'react';
 import style from './breadcrumbs.module.css'
 
-export const Breadcrumbs = () => (
+export const Breadcrumbs = ({categories, title}) => (
     <div className={style.breadcrumbs}>
-        <p>Бизнес книги / Грокаем алгоритмы. Иллюстрированное пособие для программистов и любопытствующих</p>
+        <p>{
+            `${categories} / ${title}`
+        }</p>
     </div>
 )
