@@ -7,31 +7,40 @@ import {Terms} from "../../pages/terms";
 import {BookPage} from "../../pages/book";
 import {Footer} from "../footer";
 import {Navigation} from "../nav";
+import {ErrorMessage} from "../error-message";
+import {Preloader} from "../preloader";
+
 
 export const Wrapper = () => {
 
-    const[isOpenedMenu, setIsOpenedMenu] = useState(false)
+    const [isOpenedMenu, setIsOpenedMenu] = useState(false)
 
     return (
         <div className='wrapper'>
             <Header isOpenedMenu={isOpenedMenu} setIsOpenedMenu={setIsOpenedMenu}/>
             <div style={{display: 'flex'}}>
-            <Navigation isOpenedMenu={isOpenedMenu} setIsOpenedMenu={setIsOpenedMenu}/>
+                <Navigation isOpenedMenu={isOpenedMenu} setIsOpenedMenu={setIsOpenedMenu}/>
                 <Routes>
                     <Route path='/'
-                           element={<MainPage/>} />
+                           element={<MainPage/>}/>
                     <Route path='/contract'
-                           element={<ContractPage/>} />
+                           element={<ContractPage/>}/>
                     <Route path='/terms'
-                           element={<Terms/>} />
+                           element={<Terms/>}/>
                     <Route path='/books/:category'
                            element={<MainPage/>}/>
                     <Route path='/:id'
-                           element={<BookPage/>} />
+                           element={<BookPage/>}/>
                 </Routes>
             </div>
-            <Footer />
-        </div>
+            <Footer/>
+            {
+                false && <ErrorMessage/>
 
+            }
+            {
+                false && <Preloader />
+            }
+        </div>
     );
 };

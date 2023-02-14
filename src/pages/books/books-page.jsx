@@ -8,6 +8,7 @@ import loupeIcon from "../../images/loupeIcon.svg";
 import sortByIcon from "../../images/sortByIcon.svg";
 import closeIcon from "../../images/closeIcon.svg"
 import style from './books-page.module.css'
+import {ErrorMessage} from "../../parts/error-message/error-message";
 
 
 const Card = ({singleBook}) => (
