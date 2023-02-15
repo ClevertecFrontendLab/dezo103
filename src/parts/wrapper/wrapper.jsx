@@ -21,7 +21,7 @@ export const Wrapper = () => {
     return (
         <div className='wrapper'>
             <Header isOpenedMenu={isOpenedMenu} setIsOpenedMenu={setIsOpenedMenu}/>
-            <div style={{display: 'flex'}}>
+            <div style={{display: 'flex', flex: '1 1 auto'}}>
                 <Navigation isOpenedMenu={isOpenedMenu} setIsOpenedMenu={setIsOpenedMenu}/>
                 <Routes>
                     <Route path='/'

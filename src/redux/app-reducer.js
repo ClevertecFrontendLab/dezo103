@@ -24,8 +24,7 @@ export const appReducer = (state = InitialState, action) => {
 }
 
 export const setIsErrorConnection = (isError) => ({
-    type: 'SET_IS_ERROR_CONNECTION',
-    payload: isError
+    type: 'SET_IS_ERROR_CONNECTION', payload: isError
 })
 export const setIsLoading = (isLoading) => ({
     type: 'SET_IS_LOADING',
