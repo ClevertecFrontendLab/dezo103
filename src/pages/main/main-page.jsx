@@ -1,13 +1,10 @@
 import {useEffect} from "react";
-// import {books} from '../../constants/books-list'
 
 import {useDispatch, useSelector} from "react-redux";
 import {books} from "../../redux/books-selectors";
 import {setBooksThunk} from "../../redux/books-reducer";
 import style from './main-page.module.css'
 import {BooksPage} from "../books";
-// import {allBooks} from '../../constants/books-list'
-
 
 
 export const MainPage = () => {
