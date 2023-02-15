@@ -131,6 +131,7 @@ button.viewList:active{
   flex-grow:0;
   display:flex;
   justify-content:center;
+  min-height: 200px;
 }
 .bookDescription {
   display:flex;

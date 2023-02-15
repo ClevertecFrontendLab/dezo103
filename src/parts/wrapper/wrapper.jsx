@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import {Route, Routes} from "react-router-dom";
+import {Route, Routes, Navigate} from "react-router-dom";
 import {useSelector} from "react-redux";
 import {Header} from "../header";
 import {MainPage} from "../../pages/main";
@@ -24,16 +24,18 @@ export const Wrapper = () => {
             <div style={{display: 'flex', flex: '1 1 auto'}}>
                 <Navigation isOpenedMenu={isOpenedMenu} setIsOpenedMenu={setIsOpenedMenu}/>
                 <Routes>
+                    { /* <Route path='/' */ }
+                    { /*        element={<MainPage/>}/> */ }
                     <Route path='/'
-                           element={<MainPage/>}/>
+                           element={<Navigate to='/books/all'/>}/>
                     <Route path='/contract'
                            element={<ContractPage/>}/>
                     <Route path='/terms'
                            element={<Terms/>}/>
                     <Route path='/books/:category'
                            element={<MainPage/>}/>
-                    <Route path='/:id'
-                           element={<BookPage/>}/>
+                    { /* <Route path='/:id' */ }
+                    { /*       element={<BookPage/>}/> */ }
                     <Route path='/books/:category/:id'
                            element={<BookPage/>}/>
                 </Routes>

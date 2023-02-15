@@ -1,10 +1,10 @@
 import React, {useEffect, useRef, useState} from 'react';
 import {NavLink} from "react-router-dom";
 import {useDispatch, useSelector} from "react-redux";
-import {genres} from '../../constants/genres'
 import style from './nav.module.css'
-import {setCategories, setCategoriesThunk} from "../../redux/categories-reducer";
+import {setCategoriesThunk} from "../../redux/categories-reducer";
 import {getCategoriesList} from "../../redux/categories-selectors";
+import {application} from "../../redux/app-selectors";
 
 
 export const Navigation = ({isOpenedMenu, setIsOpenedMenu}) => {
@@ -18,7 +18,7 @@ export const Navigation = ({isOpenedMenu, setIsOpenedMenu}) => {
     useEffect(() => {
 
         const closeMenu = (event) => {
-            if(!event.composedPath().includes(menuAreaRef.current)) {
+            if (!event.composedPath().includes(menuAreaRef.current)) {
                 setIsOpenedMenu(false)
             }
         }
@@ -33,7 +33,9 @@ export const Navigation = ({isOpenedMenu, setIsOpenedMenu}) => {
 
         document.body.addEventListener('click', closeMenu)
 
-        return () => {document.removeEventListener('click', closeMenu)}
+        return () => {
+            document.removeEventListener('click', closeMenu)
+        }
     }, [isOpenedMenu, setIsOpenedMenu])
 
     const dispatch = useDispatch()
@@ -51,6 +53,8 @@ export const Navigation = ({isOpenedMenu, setIsOpenedMenu}) => {
         setIsOpenedMenu(false)
     }
 
+    const app = useSelector(application)
+
     return (
         <>
             <nav className={style.menu}>
@@ -61,30 +65,36 @@ export const Navigation = ({isOpenedMenu, setIsOpenedMenu}) => {
                                  onClick={onClickHandler}
                                  data-test-id='navigation-showcase'
                         >Витрина
-                            книг<span className={style.arrowWrapper}>
+                            книг{
+                                !app.isErrorConnection && <span className={style.arrowWrapper}>
                             <div
                                 className={(isOpenSubmenu) ? `${style.arrow} ${style.arrowUp}` : `${style.arrow}`}/>
                     </span>
+                            }
                         </NavLink>
                     </li>
-                    <ul className={(!isOpenSubmenu) ? `${style.submenu} ${style.hidden}` : `${style.submenu}`}>
-                        <li>
-                            <NavLink
-                                to='/books/all'
-                                data-test-id='navigation-books'
-                                className={({isActive}) => isActive ? style.submenuActive : ''}>Все
-                                книги
-                            </NavLink>
-                        </li>
-                        {
-                            categories.map((genre) => <li key={genre.id}>
+                    {
+                        !app.isErrorConnection &&
+                        <ul className={(!isOpenSubmenu) ? `${style.submenu} ${style.hidden}` : `${style.submenu}`}>
+                            <li>
                                 <NavLink
-                                    to={`/books/${genre.path}`}
-                                    className={({isActive}) => isActive ? style.submenuActive : ''}>{genre.name}
+                                    to='/books/all'
+                                    data-test-id='navigation-books'
+                                    className={({isActive}) => isActive ? style.submenuActive : ''}>Все
+                                    книги
                                 </NavLink>
-                            </li>)
-                        }
-                    </ul>
+                            </li>
+                            {
+                                categories.map((genre) => <li key={genre.id}>
+                                    <NavLink
+                                        to={`/books/${genre.path}`}
+                                        className={({isActive}) => isActive ? style.submenuActive : ''}>{genre.name}
+                                    </NavLink>
+                                </li>)
+                            }
+                        </ul>
+                    }
+
                     <li>
                         <NavLink to='/terms'
                                  className={({isActive}) => isActive ? style.active : ''}
@@ -103,8 +113,9 @@ export const Navigation = ({isOpenedMenu, setIsOpenedMenu}) => {
                     </li>
                 </ul>
             </nav>
-            <div className={(isOpenedMenu) ?  style.substrate : style.substrateHidden}>
-                <nav className={style.mobMenu} data-test-id='burger-navigation' ref={menuAreaRef} id='mobileMenu'>
+            <div className={(isOpenedMenu) ? style.substrate : style.substrateHidden}>
+                <nav className={style.mobMenu} data-test-id='burger-navigation' ref={menuAreaRef}
+                     id='mobileMenu'>
                     <ul className={style.mainMenu}>
                         <li>
                             <NavLink to='/'
@@ -124,7 +135,9 @@ export const Navigation = ({isOpenedMenu, setIsOpenedMenu}) => {
                                     to='/books/all'
                                     data-test-id='burger-books'
                                     className={({isActive}) => isActive ? style.submenuActive : ''}
-                                    onClick={() => {setIsOpenedMenu(false)}}
+                                    onClick={() => {
+                                        setIsOpenedMenu(false)
+                                    }}
                                 >Все книги
                                 </NavLink>
                             </li>
@@ -133,7 +146,9 @@ export const Navigation = ({isOpenedMenu, setIsOpenedMenu}) => {
                                     <NavLink
                                         to={`/books/${genre.path}`}
                                         className={({isActive}) => isActive ? style.submenuActive : ''}
-                                        onClick={() => {setIsOpenedMenu(false)}}
+                                        onClick={() => {
+                                            setIsOpenedMenu(false)
+                                        }}
                                     >{genre.name}
                                     </NavLink>
                                 </li>)
