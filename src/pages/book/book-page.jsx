@@ -1,5 +1,5 @@
 import {useEffect, useRef, useState} from "react";
-import {useLocation, useParams} from "react-router-dom";
+import {useParams} from "react-router-dom";
 import {useDispatch, useSelector} from "react-redux";
 import {Breadcrumbs} from "../../parts/breadcrumbs";
 import {Rating} from "../../parts/rating";
@@ -10,13 +10,13 @@ import {SwiperDesktop} from "../../parts/swiper-desktop/swiper-desktop";
 import {setSingleBookThunk} from "../../redux/single-book-reducer";
 import {singleBook} from "../../redux/single-book-reducer-selectors";
 import {application} from "../../redux/app-selectors";
+import {getCategoriesList} from "../../redux/categories-selectors";
 
 
 export const BookPage = () => {
 
     const dispatch = useDispatch()
-
-    const {id} = useParams()
+    const {id, category} = useParams()
 
     useEffect(() => {
         window.scrollTo(0, 0);
@@ -41,15 +41,19 @@ export const BookPage = () => {
         setIsReviewsOpen(!isReviewsOpen)
     }
 
-    const location = useLocation();
-    const {state} = location;
-
     const app = useSelector(application)
+    const categories = useSelector(getCategoriesList)
+
+    let activeCategory = categories.find(item => item.path === category)?.name
+
+    if (!activeCategory) {
+        activeCategory = 'Все книги'
+    }
 
     return (
         app.isErrorConnection
             ? <section className={style.mainPage}>
-                <Breadcrumbs categories={state} title=''/>
+                <Breadcrumbs categories={activeCategory} title=''/>
             </section>
             : (Object.keys(book).length !== 0) &&
             <section className={style.mainPage}>

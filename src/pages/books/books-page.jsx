@@ -15,7 +15,7 @@ const Card = ({singleBook}) => (
 
     <div className={style.card} data-test-id='card'>
         <div className={style.bookImage}>
-            <NavLink to={`${singleBook.id}`} state={singleBook.categories[0]}>
+            <NavLink to={`${singleBook.id}`}>
             {
 
                 singleBook.image
