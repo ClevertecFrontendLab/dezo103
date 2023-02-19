@@ -1,0 +1,300 @@
+.mainPage {
+  display:flex;
+    width: 100%;
+  flex-direction:column;
+  flex:1 0 auto;
+}
+.about {
+  display:grid;
+}
+.cover {
+    width: 445px;
+  grid-column-start:1;
+  grid-column-end:2;
+  grid-row-start:1;
+  grid-row-end:3;
+}
+.mainBookData {
+  grid-column-start:2;
+  grid-column-end:3;
+  grid-row-start:1;
+  grid-row-end:2;
+  padding-left:30px;
+}
+.descriptionAbout {
+  grid-column-start:2;
+  grid-column-end:3;
+  grid-row-start:2;
+  grid-row-end:3;
+  padding-left:30px;
+  font-style:normal;
+  font-weight:400;
+  font-size:16px;
+  line-height:24px;
+}
+.author {
+  font-style:normal;
+  font-weight:700;
+  font-size:18px;
+  line-height:28px;
+  color:#A7A7A7;
+}
+.mainBookData h1 {
+  font-style:normal;
+  font-weight:700;
+  font-size:32px;
+  line-height:40px;
+}
+.mainBookData h1,
+.description p {
+  margin:20px 0;
+}
+.descriptionAbout h3,
+.descriptionAbout p {
+  margin:32px 0;
+}
+.buttonWrapper button {
+  width:350px;
+  height:52px;
+  background:linear-gradient(231.58deg, #F83600 -53.35%, #F9D423 297.76%);
+  border-radius:30px;
+  letter-spacing:0.2px;
+  text-transform:uppercase;
+  color:#FFFFFF;
+  border:none;
+  margin:32px 0;
+}
+.buttonWrapper button:hover {
+  background:linear-gradient(231.58deg, #F83600 -53.35%, #F9D423 297.76%);
+  border:1px solid #FF740F;
+  box-shadow:0 2px 5px rgba(54, 54, 54, 0.1);
+  border-radius:30px;
+}
+.buttonWrapper button:active {
+  background:linear-gradient(231.58deg, #F83600 -53.35%, #F9D423 297.76%);
+  box-shadow:0 3px 4px rgba(222, 125, 11, 0.2), 0 1px 10px rgba(249, 89, 8, 0.2);
+  border-radius:30px;
+}
+.buttonWrapper button:disabled {
+  background:#F9F9FA;
+  border:1px solid #BFC4C9;
+  border-radius:30px;
+  color:#A7A7A7;
+}
+.detail h3{
+  margin:32px 0 16px 0;
+}
+.line {
+  display:block;
+  border-top:1px solid #EBEBEB;
+  width:350px;
+  margin-bottom:16px;
+}
+h3.marginedH3 {
+    display: inline-block;
+  margin-top:62px;
+    margin-right: 25px;
+}
+h3.marginedH3 span {
+  font-weight:400;
+  font-size:14px;
+  line-height:24px;
+  color:#A7A7A7;
+  margin-left:6px;
+}
+.arrow {
+    display: inline-block;
+    border: solid black;
+    border-width: 0 2px 2px 0;
+    padding: 3px;
+    transform: rotate(45deg);
+    margin-bottom: 3px;
+    cursor: pointer;
+}
+.arrowUp {
+    margin-bottom: -2px;
+    transform: rotate(-135deg);
+}
+.allReviews {
+    display: block;
+}
+.hidden {
+    display: none;
+    transition: all 0.3s ease-out;
+}
+.tables {
+  display:flex;
+  justify-content:flex-start;
+}
+table {
+  display:inline-block;
+  width:50%;
+}
+td {
+  vertical-align:top;
+}
+table td:first-child {
+  font-style:normal;
+  font-weight:600;
+  font-size:16px;
+  line-height:24px;
+  color:#A7A7A7;
+  vertical-align:top;
+  padding:0 70px 16px 0;
+}
+.detail button {
+  width:350px;
+  height:52px;
+  background:linear-gradient(231.58deg, #F83600 -53.35%, #F9D423 297.76%);
+  border-radius:30px;
+  letter-spacing:0.2px;
+  text-transform:uppercase;
+  color:#FFFFFF;
+  border:none;
+  margin:32px 0;
+}
+.detail button:hover {
+  background:linear-gradient(231.58deg, #F83600 -53.35%, #F9D423 297.76%);
+  border:1px solid #FF740F;
+  box-shadow:0 2px 5px rgba(54, 54, 54, 0.1);
+  border-radius:30px;
+}
+.detail button:active {
+  background:linear-gradient(231.58deg, #F83600 -53.35%, #F9D423 297.76%);
+  box-shadow:0 3px 4px rgba(222, 125, 11, 0.2), 0 1px 10px rgba(249, 89, 8, 0.2);
+  border-radius:30px;
+}
+.detail button:disabled {
+  background:#F9F9FA;
+  border:1px solid #BFC4C9;
+  border-radius:30px;
+  color:#A7A7A7;
+}
+@media screen and (max-width:768px) {
+  .cover {
+    grid-column-start:1;
+    grid-column-end:2;
+    grid-row-start:1;
+    grid-row-end:2;
+    width:141px;
+    padding-right:5px;
+  }
+  .mainBookData {
+    grid-column-start:2;
+    grid-column-end:5;
+    grid-row-start:1;
+    grid-row-end:2;
+    padding-left:0;
+  }
+  .descriptionAbout {
+    grid-column-start:1;
+    grid-column-end:5;
+    grid-row-start:2;
+    grid-row-end:3;
+  }
+  .mainBookData h1 {
+    font-style:normal;
+    font-weight:700;
+    font-size:24px;
+    line-height:30px;
+  }
+  .author {
+    font-style:normal;
+    font-weight:600;
+    font-size:14px;
+    line-height:18px;
+  }
+  table td:first-child {
+    font-size:14px;
+    line-height:18px;
+    padding:0 34px 16px 0;
+  }
+  .buttonWrapper {
+  }
+  .buttonWrapper button {
+    width:306px;
+    height:52px;
+    background:linear-gradient(231.58deg, #F83600 -53.35%, #F9D423 297.76%);
+    border-radius:30px;
+    letter-spacing:0.2px;
+    text-transform:uppercase;
+    color:#FFFFFF;
+    border:none;
+  }
+  .detail button {
+    width:100%;
+    margin-bottom:0;
+  }
+}
+@media screen and (max-width:590px) {
+  .tables {
+    display:flex;
+    flex-direction:column;
+  }
+  table {
+    width:100%;
+  }
+}
+@media screen and (max-width:320px) {
+  .about {
+    display:flex;
+    flex-direction:column;
+  }
+  .cover {
+    width:188px;
+    margin:0 auto;
+    padding-right:0;
+  }
+  .author {
+    font-weight:400;
+    font-size:12px;
+    line-height:18px;
+  }
+  .buttonWrapper button {
+    width:100%;
+    border-radius:30px;
+    height:40px;
+    margin:53px 0 0 0;
+  }
+  .descriptionAbout {
+    padding-left:0;
+  }
+  .descriptionAbout h3 {
+    margin-bottom:16px;
+  }
+  .descriptionAbout p {
+    margin:0;
+    font-weight:400;
+    font-size:12px;
+    line-height:18px;
+  }
+  .line {
+    width:100%;
+  }
+  h3.marginedH3 {
+    display: inline-block;
+    margin-top:42px;
+  }
+  table {
+    width:100%;
+  }
+  .tables {
+    display:flex;
+    flex-direction:column;
+  }
+  table td {
+    font-weight:400;
+    font-size:12px;
+    line-height:16px;
+  }
+  table td:first-child {
+    font-style:normal;
+    font-weight:500;
+    font-size:12px;
+    line-height:16px;
+    color:#A7A7A7;
+    vertical-align:top;
+    padding:0 40px 16px 0;
+  }
+}
+

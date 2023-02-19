@@ -1,0 +1,47 @@
+.wrapper {
+  display:flex;
+  flex-direction:column;
+  max-width:1110px;
+  width:100%;
+  margin:0 auto;
+  min-height:100vh;
+  padding:0 10px;
+}
+.mainPage {
+  display:flex;
+  flex:1 0 auto;
+}
+.mainList {
+  font-weight:600;
+  font-size:16px;
+  line-height:24px;
+}
+.secondList {
+  font-weight:400;
+  font-size:16px;
+  line-height:24px;
+  padding-left:30px;
+}
+.thirdList {
+  padding-left:30px;
+}
+.fourthList {
+  padding-left:30px;
+}
+.mainList li {
+  margin:16px 0;
+}
+ul.mainList {
+  margin-top:32px;
+}
+@media screen and (max-width:768px) {
+  .wrapper {
+    max-width:640px;
+  }
+}
+@media screen and (max-width:320px) {
+  .wrapper {
+    width:288px;
+    padding:0;
+  }
+}

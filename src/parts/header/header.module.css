@@ -1,0 +1,93 @@
+.header {
+  display:flex;
+  justify-content:space-between;
+  flex:0 0 auto;
+  margin-top:32px;
+  margin-bottom:62px;
+}
+.logo {
+  display:flex;
+  align-items:center;
+}
+.info {
+  display:flex;
+  width:825px;
+  justify-content:space-between;
+  align-items:center;
+}
+.info h1 {
+  font-weight:700;
+  font-size:32px;
+  line-height:40px;
+}
+.user {
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+}
+.greeting {
+  font-weight:600;
+  padding-right:12px;
+}
+.burger {
+  display:none;
+  flex-direction:column;
+  justify-content:space-between;
+  width:27px;
+  height:18px;
+}
+.burger div {
+  height:3px;
+  width:100%;
+  border-radius:2px;
+  background-color:#363636;
+    transition: 0.5s all ease-out;
+}
+.opened.firstLine{
+  position: relative;
+  background-color: #f85908;
+  rotate: 45deg;
+  top:7px;
+  left:0;
+  transition: 0.5s all ease-out;
+}
+.opened.secondLine{
+  display: none;
+  transition: 0.5s all ease-out;
+}
+.opened.lastLine{
+  background-color: #f85908;
+  rotate: -45deg;
+  position: relative;
+  top:-7px;
+  left:0;
+  transition: 0.5s all ease-out;
+}
+@media screen and (max-width:768px) {
+  .logo {
+    display:none;
+  }
+  .user {
+    display:none;
+  }
+  .burger {
+    display:flex;
+    margin-right:30px;
+  }
+  .info {
+    justify-content:flex-start;
+  }
+}
+@media screen and (max-width:320px) {
+  .info h1 {
+    font-style:normal;
+    font-weight:700;
+    font-size:18px;
+    line-height:28px;
+    letter-spacing:0.1px;
+  }
+  .burger {
+    width:20px;
+    height:17px;
+  }
+}
