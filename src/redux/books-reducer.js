@@ -1,32 +1,31 @@
+import {createSlice} from "@reduxjs/toolkit";
 import {setIsErrorConnection, setIsLoading} from "./app-reducer";
 import {booksAPI} from "../api/api";
 
-const SET_BOOKS = 'SET_BOOKS'
 
 const InitialState = []
 
-export const booksReducer = (state = InitialState, action) => {
-    switch (action.type) {
-        case SET_BOOKS:
-            return action.payload
-        default:
-            return state
+const slice = createSlice({
+    name: 'books',
+    initialState: InitialState,
+    reducers: {
+        setBooks(state, action) {
+            return action.payload.value
+        }
     }
-}
+})
 
-export const setBooks = (allBooks) => ({type: 'SET_BOOKS', payload: allBooks})
+export const booksReducer = slice.reducer
+export const {setBooks} = slice.actions
 
-
-export const setBooksThunk = () => (dispatch) => {
-    dispatch(setIsLoading(true))
-    const data = booksAPI.getBooks()
-        .then((data) => {
-            dispatch(setBooks(data.data))
-        })
-        .catch((err) => {
-            dispatch(setIsErrorConnection(true))
-        })
-        .finally(() => {
-            dispatch(setIsLoading(false))
-        })
+export const setBooksThunk = () => async (dispatch) => {
+    dispatch(setIsLoading({value: true}))
+    try {
+        const data = await booksAPI.getBooks()
+        dispatch(setBooks({value: data.data}))
+    } catch {
+        dispatch(setIsErrorConnection({value: true}))
+    } finally {
+        dispatch(setIsLoading({value: false}))
+    }
 }

@@ -8,7 +8,7 @@ export const ErrorMessage = () => {
     const dispatch = useDispatch()
 
     const onClickHandler = () => {
-        dispatch(setIsErrorConnection(false))
+        dispatch(setIsErrorConnection({value: false}))
     }
 
     return (

@@ -24,8 +24,6 @@ export const Wrapper = () => {
             <div style={{display: 'flex', flex: '1 1 auto'}}>
                 <Navigation isOpenedMenu={isOpenedMenu} setIsOpenedMenu={setIsOpenedMenu}/>
                 <Routes>
-                    { /* <Route path='/' */ }
-                    { /*        element={<MainPage/>}/> */ }
                     <Route path='/'
                            element={<Navigate to='/books/all'/>}/>
                     <Route path='/contract'
@@ -34,8 +32,6 @@ export const Wrapper = () => {
                            element={<Terms/>}/>
                     <Route path='/books/:category'
                            element={<MainPage/>}/>
-                    { /* <Route path='/:id' */ }
-                    { /*       element={<BookPage/>}/> */ }
                     <Route path='/books/:category/:id'
                            element={<BookPage/>}/>
                 </Routes>

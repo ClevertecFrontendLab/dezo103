@@ -1,33 +1,32 @@
+import {createSlice} from "@reduxjs/toolkit";
 import {categoryAPI} from "../api/api";
 import {setIsErrorConnection, setIsLoading} from "./app-reducer";
-import {setBooksThunk} from "./books-reducer";
 
-const SET_CATEGORIES = 'SET_CATEGORIES'
 
 const InitialState = []
 
-export const categoriesReducer = (state = InitialState, action) => {
-    switch (action.type) {
-        case SET_CATEGORIES:
-            return [...action.payload]
-        default:
-            return state
+const slice = createSlice({
+    name: 'categories',
+    initialState: InitialState,
+    reducers: {
+        setCategories(state, action) {
+            return action.payload.value
+        }
     }
-}
+})
 
-export const setCategories = (allCategories) => ({type: 'SET_CATEGORIES', payload: allCategories})
+export const categoriesReducer = slice.reducer
+export const {setCategories} = slice.actions
 
 
-export const setCategoriesThunk = () => (dispatch) => {
-    dispatch(setIsLoading(true))
-    const data = categoryAPI.getCategories()
-        .then((data) => {
-            dispatch(setCategories(data.data))
-            }
-        ).catch((err) => {
-            dispatch(setIsErrorConnection(true))
-        })
-        .finally(() => {
-            dispatch(setIsLoading(false))
-        })
+export const setCategoriesThunk = () => async (dispatch) => {
+    dispatch(setIsLoading({value: true}))
+    try {
+        const data = await categoryAPI.getCategories()
+        dispatch(setCategories({value: data.data}))
+    } catch {
+        dispatch(setIsErrorConnection({value: true}))
+    } finally {
+        dispatch(setIsLoading({value: false}))
+    }
 }

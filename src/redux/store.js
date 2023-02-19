@@ -1,10 +1,8 @@
-import {applyMiddleware, combineReducers, createStore} from "redux";
-import thunkMiddleware from 'redux-thunk';
+import {combineReducers, configureStore} from "@reduxjs/toolkit";
 import {categoriesReducer} from "./categories-reducer";
 import {appReducer} from "./app-reducer";
 import {booksReducer} from "./books-reducer";
 import {singleBookReducer} from "./single-book-reducer";
-
 
 
 const rootReducer = combineReducers({
@@ -15,8 +13,9 @@ const rootReducer = combineReducers({
 })
 
 
+export const store = configureStore({
+    reducer: rootReducer,
+    middleware: (getDefaultMiddleware) => getDefaultMiddleware()
+})
 
-export const store = createStore(rootReducer, applyMiddleware(thunkMiddleware))
 
-
-window.store=store
