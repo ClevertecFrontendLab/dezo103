@@ -6,6 +6,7 @@
 }
 .toolsSort {
   height:100%;
+  outline:none;
   border-radius:599px;
   margin-right:15px;
   border:none;
@@ -15,6 +16,7 @@
 input.toolsSort {
   width:350px;
   padding-left:40px;
+  caret-color: #F83600;
 }
 button.toolsSort {
   width:150px;
@@ -245,6 +247,16 @@ button.viewList:active{
   border-radius:20px;
   color:#A7A7A7;
 }
+.emptyBookList {
+    display: flex;
+    width: 100%;
+    justify-content: center;
+    font-weight: 700;
+    font-size: 32px;
+    line-height: 40px;
+    color: #A7A7A7;
+    padding-top: 200px;
+}
 @media screen and (max-width:1024px) {
   input.toolsSort {
     width:139px;
@@ -353,5 +365,11 @@ button.viewList:active{
   }
   .cardList .bookButton button {
     width:186px;
+  }
+  .emptyBookList {
+      font-size: 18px;
+      line-height: 28px;
+      padding: 147px 10px 0 10px;
+      text-align: center;
   }
 }

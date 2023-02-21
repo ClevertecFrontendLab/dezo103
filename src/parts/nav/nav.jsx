@@ -88,6 +88,7 @@ export const Navigation = ({isOpenedMenu, setIsOpenedMenu}) => {
                                 categories.map((genre) => <li key={genre.id}>
                                     <NavLink
                                         to={`/books/${genre.path}`}
+                                        data-test-id={`navigation-${genre.path}`}
                                         className={({isActive}) => isActive ? style.submenuActive : ''}>{genre.name}
                                     </NavLink>
                                 </li>)
@@ -145,6 +146,7 @@ export const Navigation = ({isOpenedMenu, setIsOpenedMenu}) => {
                                 categories.map((genre) => <li key={genre.id}>
                                     <NavLink
                                         to={`/books/${genre.path}`}
+                                        data-test-id={`burger-${genre.path}`}
                                         className={({isActive}) => isActive ? style.submenuActive : ''}
                                         onClick={() => {
                                             setIsOpenedMenu(false)
