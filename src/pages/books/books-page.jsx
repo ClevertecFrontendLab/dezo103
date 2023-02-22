@@ -174,7 +174,7 @@ export const BooksPage = ({bookList}) => {
                         <div onClick={onSearchClickHandler} role="presentation" className={style.buttonSearch} data-test-id='button-search-open'>
                             <input type="text"
                                    className={(isFullWidthSearch) ? `${style.toolsSort} ${style.isFullWidth}` : `${style.toolsSort}`}
-                                   placeholder='Поиск книги или автора . . .'
+                                   placeholder='Поиск книги или автора…'
                                    ref={inputRef}
                                    data-test-id='input-search'
                                    onChange={(event) => onInputChangeHandler(event)}
@@ -244,7 +244,8 @@ export const BooksPage = ({bookList}) => {
                             filter={substring}
                             key={book.id}
                         />)
-                        : <p className={style.emptyBookList} data-test-id='empty-category'>В этой категории книг еще нет</p>
+                        : !substring ? <p className={style.emptyBookList} data-test-id='empty-category'>В этой категории книг еще нет</p>
+                                        : <p className={style.emptyBookList} data-test-id='search-result-not-found'>По запросу ничего не найдено</p>
 
 
                 }

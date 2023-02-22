@@ -16,7 +16,7 @@
 input.toolsSort {
   width:350px;
   padding-left:40px;
-  caret-color: #F83600;
+  caret-color: rgb(248, 54, 0);
 }
 button.toolsSort {
   width:150px;

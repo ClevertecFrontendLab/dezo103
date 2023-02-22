@@ -8,7 +8,7 @@ export const Highlight = ({filter, str}) => {
         return str.split(regexp).map((s, index, array) => {
             if (index < array.length - 1) {
                 const c = matchValue.shift()
-                return <>{s}<span style={{color: '#FF5253'}} data-test-id='highlight-matches'>{c}</span></>
+                return <>{s}<span style={{color: 'rgb(255, 82, 83)'}} data-test-id='highlight-matches'>{c}</span></>
             }
             return s
         })
