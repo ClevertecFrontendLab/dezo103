@@ -372,4 +372,7 @@ button.viewList:active{
       padding: 147px 10px 0 10px;
       text-align: center;
   }
+  .bookImage img {
+      max-width: 174px;
+  }
 }

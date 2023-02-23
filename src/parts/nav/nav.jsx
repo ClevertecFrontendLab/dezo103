@@ -108,6 +108,7 @@ export const Navigation = ({isOpenedMenu, setIsOpenedMenu}) => {
                                         data-test-id={`navigation-${genre.path}`}
                                         className={({isActive}) => isActive ? style.submenuActive : ''}>{genre.name}
                                     </NavLink>
+                                    <span data-test-id={`navigation-book-count-for-${genre.path}`}>{booksCounter[genre.name] || 0}</span>
                                 </li>)
                             }
                         </ul>
@@ -170,6 +171,7 @@ export const Navigation = ({isOpenedMenu, setIsOpenedMenu}) => {
                                         }}
                                     >{genre.name}
                                     </NavLink>
+                                    <span data-test-id={`burger-book-count-for-${genre.path}`}>{booksCounter[genre.name] || 0}</span>
                                 </li>)
                             }
                         </ul>

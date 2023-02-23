@@ -49,7 +49,7 @@ export const BookPage = () => {
     if (!activeCategory) {
         activeCategory = 'Все книги'
     }
-    // console.log(category)
+
     return (
         app.isErrorConnection
             ? <section className={style.mainPage}>
@@ -57,7 +57,8 @@ export const BookPage = () => {
             </section>
             : (Object.keys(book).length !== 0) &&
             <section className={style.mainPage}>
-                <Breadcrumbs categories={book.categories[0]} pathCategory={category} title={book.title}/>
+                {/* <Breadcrumbs categories={book.categories[0]} pathCategory={category} title={book.title}/> */}
+                <Breadcrumbs categories={activeCategory} pathCategory={category} title={book.title}/>
                 <div className={style.about}>
                     <div className={style.cover}>
                         {

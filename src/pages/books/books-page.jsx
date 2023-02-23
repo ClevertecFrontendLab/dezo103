@@ -144,7 +144,6 @@ export const BooksPage = ({bookList}) => {
         filteredBook = filteredBook.filter((book) => book.title.toLowerCase().includes(substring.toLowerCase()))
 
         setSortedBookList(filteredBook)
-        console.log(filteredBook, 'flltered book')
     },[bookList, category, categories, sortedByRatingDecrease, substring])
 
     useEffect(() => {
@@ -160,11 +159,6 @@ export const BooksPage = ({bookList}) => {
         setSubstring(event.target.value)
         filterBook()
     }
-    // console.log(sortedByRatingDecrease, 'sortedByRatingDecrease')
-
-    // console.log('sortedBookList', sortedBookList)
-
-
 
     return (
         <div className={style.mainContent}>
@@ -244,7 +238,7 @@ export const BooksPage = ({bookList}) => {
                             filter={substring}
                             key={book.id}
                         />)
-                        : !substring ? <p className={style.emptyBookList} data-test-id='empty-category'>В этой категории книг еще нет</p>
+                        : !substring ? <p className={style.emptyBookList} data-test-id='empty-category'>В этой категории книг ещё нет</p>
                                         : <p className={style.emptyBookList} data-test-id='search-result-not-found'>По запросу ничего не найдено</p>
 
 
