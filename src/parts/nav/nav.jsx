@@ -5,6 +5,7 @@ import style from './nav.module.css'
 import {setCategoriesThunk} from "../../redux/categories-reducer";
 import {getCategoriesList} from "../../redux/categories-selectors";
 import {application} from "../../redux/app-selectors";
+import {books} from "../../redux/books-selectors";
 
 
 export const Navigation = ({isOpenedMenu, setIsOpenedMenu}) => {
@@ -55,6 +56,22 @@ export const Navigation = ({isOpenedMenu, setIsOpenedMenu}) => {
 
     const app = useSelector(application)
 
+
+    const allBooks = useSelector(books)
+
+    const booksCounter = allBooks.reduce((result, item) => {
+        const currentResult = {...result}
+        if (Object.prototype.hasOwnProperty.call(result, item.categories[0])) {
+            currentResult[item.categories[0]] += 1
+        } else {
+            currentResult[item.categories[0]] = 1
+        }
+        return currentResult
+    }, {})
+
+    console.log('booksCounter', booksCounter)
+
+
     return (
         <>
             <nav className={style.menu}>
@@ -88,8 +105,10 @@ export const Navigation = ({isOpenedMenu, setIsOpenedMenu}) => {
                                 categories.map((genre) => <li key={genre.id}>
                                     <NavLink
                                         to={`/books/${genre.path}`}
+                                        data-test-id={`navigation-${genre.path}`}
                                         className={({isActive}) => isActive ? style.submenuActive : ''}>{genre.name}
                                     </NavLink>
+                                    <span data-test-id={`navigation-book-count-for-${genre.path}`}>{booksCounter[genre.name] || 0}</span>
                                 </li>)
                             }
                         </ul>
@@ -145,12 +164,14 @@ export const Navigation = ({isOpenedMenu, setIsOpenedMenu}) => {
                                 categories.map((genre) => <li key={genre.id}>
                                     <NavLink
                                         to={`/books/${genre.path}`}
+                                        data-test-id={`burger-${genre.path}`}
                                         className={({isActive}) => isActive ? style.submenuActive : ''}
                                         onClick={() => {
                                             setIsOpenedMenu(false)
                                         }}
                                     >{genre.name}
                                     </NavLink>
+                                    <span data-test-id={`burger-book-count-for-${genre.path}`}>{booksCounter[genre.name] || 0}</span>
                                 </li>)
                             }
                         </ul>
